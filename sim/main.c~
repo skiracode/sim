@@ -1,0 +1,8 @@
+#include "termin.h"
+
+void main(void)
+{
+  struct termin *termin = termin_create ();
+  termin_free(termin);
+}
+

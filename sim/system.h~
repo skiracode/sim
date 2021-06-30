@@ -1,0 +1,21 @@
+#pragma once
+#include "types.h"
+
+struct window;
+struct monitor;
+
+struct monitor
+{
+  void *internal;
+}
+
+struct window
+{
+  struct monitor *monitor;
+  const char *title;
+  size u32[2];
+  pixel_buffer_size u32[2];
+  void *internal;
+};
+
+struct window *window_create (const char *title, u32 pixel_buffer_width, u32 pixel_buffer_height);

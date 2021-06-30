@@ -1,0 +1,62 @@
+#include "system.h"
+#include <stdlib.h>
+#include <raylib.h>
+
+struct window_internal;
+struct monitor_internal;
+
+struct monitor_internal
+{
+  int identifier;
+};
+
+struct window_internal
+{
+  Image image;
+  Texture2D texture;
+};
+
+struct monitor *
+monitor_get_current ()
+{
+  struct monitor = malloc (sizeof (struct monitor));
+  monitor->internal = malloc (sizeof (struct monitor_internal));
+  struct monitor_internal *internal = monitor->internal;
+  internal->identifier = GetCurrentMonitor (); 
+  return monitor;
+}
+
+void monitor_free (struct monitor *monitor)
+{
+  free (monitor->internal);
+  free (monitor);
+}
+
+struct window *
+window_create (const char *title, u32 pixel_buffer_height, u32 pixel_buffer_width)
+{
+  struct window *window = malloc(sizeof(struct window));
+  window->monitor = monitor_get_current ();
+  window->title = title;
+  window->size[0] = height;
+  window->size[1] = width;
+  window->pixel_buffer_size[0] = pixel_buffer_height;
+  window->pixel_buffer_size[1] = pixel_buffer_width;
+  window->internal = malloc(sizeof(struct window_internal))
+  struct window_internal *internal = window->internal;
+  internal->image = GenImageColor (256, 128, WHITE);
+  internal->texture = LoadTextureFromImage (internal->image);
+  return window; 
+}
+
+void window_internal_free (struct window_internal *window_internal)
+{
+  UnloadTexture (window_internal->texture);
+  UnloadImage (window_internal->image);
+}
+
+void window_free(struct window *window)
+{
+  window_internal_free (window->internal);
+  free (window);
+}

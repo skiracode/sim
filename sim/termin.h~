@@ -1,0 +1,13 @@
+#pragma once
+
+#include "types.h"
+
+struct termin;
+
+struct termin
+{
+  u8 dull;
+}
+
+struct termin *termin_create();
+void termin_free(struct termin *termin);

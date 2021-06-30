@@ -1,0 +1,15 @@
+#include "termin.h"
+#include <stdlib.h>
+
+struct termin *
+termin_create()
+{
+  struct termin *termin = malloc(sizeof(struct termin));
+
+  return termin;
+}
+
+void termin_free(struct termin *termin)
+{
+  free(termin);
+}
